@@ -2,10 +2,8 @@ import pandas
 
 class Portfolio:
   """Class representing an investment account portfolio"""
-
-  def __init__(self):
-    self.Cash = Cash()
-    self.Stocks = Stocks()
+  Cash = None
+  Stocks = None
 
 class Cash:
   """Class representing the cash assets and information of a portfolio"""
