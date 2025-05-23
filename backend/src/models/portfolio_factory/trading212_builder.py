@@ -27,8 +27,16 @@ class Trading212PortfolioFactory:
 
       return cash_instance
 
+    def build_stocks():
+      stocks_instance = portfolio.Stocks()
+
+      # TODO: Retrieve and generalise stock data
+
+      return stocks_instance
+
     trading212_portfolio = portfolio.Portfolio()
 
     trading212_portfolio.Cash = build_cash()
+    trading212_portfolio.Stocks = build_stocks()
 
     return trading212_portfolio
