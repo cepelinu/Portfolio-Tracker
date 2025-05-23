@@ -10,7 +10,7 @@ class Trading212:
   Only the live version is supported.
 
   Attributes:
-    base_url (str): The base url.
+    BASE_URL (str): The base url.
     api_key (str): The api key.
   """
   BASE_URL = "https://live.trading212.com"
