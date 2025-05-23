@@ -19,7 +19,7 @@ class Trading212PortfolioFactory:
       cash_instance = portfolio.Cash()
 
       account_cash = trading212_api.fetch_account_cash()
-      cash_instance.free = account_cash["blocked"]
+      cash_instance.free = account_cash["free"]
       cash_instance.invested = account_cash["invested"]
       cash_instance.ppl = account_cash["ppl"]
       cash_instance.result = account_cash["result"]
