@@ -1,5 +1,5 @@
 import pytest
-from unittest.mock import patch, MagicMock
+from unittest.mock import patch
 from backend.src.api import *
 from backend.src.models import portfolio
 from backend.src.models.portfolio_factory.base import PortfolioFactory
