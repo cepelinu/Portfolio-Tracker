@@ -1,6 +1,6 @@
 from backend.src.api import *
 from backend.src.models import portfolio
-from .trading212 import Trading212PortfolioFactory
+from .trading212_builder import Trading212PortfolioFactory
 
 
 class PortfolioFactory:
