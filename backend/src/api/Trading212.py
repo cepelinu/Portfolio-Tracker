@@ -17,7 +17,7 @@ class Trading212:
 
   EPOCH_ISO8601 = "1970-01-01T00:00:00Z"
 
-  def __init__(self, api_key = None):
+  def __init__(self, api_key = ""):
     self.api_key = api_key
 
   @staticmethod
