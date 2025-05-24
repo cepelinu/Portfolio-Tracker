@@ -1,4 +1,8 @@
 # runtime libraries
 datetime
 pandas
+python-dateutil
 requests
+
+# development libraries
+pytest

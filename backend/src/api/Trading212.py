@@ -10,14 +10,14 @@ class Trading212:
   Only the live version is supported.
 
   Attributes:
-    base_url (str): The base url.
+    BASE_URL (str): The base url.
     api_key (str): The api key.
   """
   BASE_URL = "https://live.trading212.com"
 
   EPOCH_ISO8601 = "1970-01-01T00:00:00Z"
 
-  def __init__(self, api_key = None):
+  def __init__(self, api_key = ""):
     self.api_key = api_key
 
   @staticmethod
