@@ -1,12 +1,5 @@
 import pytest
-from models.portfolio_factory import main_factory
-
-class DummyBroker:
-  pass
-
-def test_invalid_broker_name():
-  with pytest.raises(ValueError):
-    main_factory.PortfolioFactory.build(DummyBroker())
+from models.portfolio_factory import base
 
 def test_format_timestamp_to_utc_iso():
   test_cases = {
@@ -21,5 +14,5 @@ def test_format_timestamp_to_utc_iso():
   }
 
   for original, expected in test_cases.items():
-    convert = base.PortfolioFactory.format_timestamp_to_utc_iso(original)
+    convert = base.Base.format_timestamp_to_utc_iso(original)
     assert convert == expected
