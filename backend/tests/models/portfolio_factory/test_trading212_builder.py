@@ -1,8 +1,8 @@
 import pytest
 from unittest.mock import patch
-from backend.src.api import *
-from backend.src.models import portfolio
-from backend.src.models.portfolio_factory.base import PortfolioFactory
+from api import *
+from models import portfolio
+from models.portfolio_factory.base import PortfolioFactory
 
 
 # Mock responses

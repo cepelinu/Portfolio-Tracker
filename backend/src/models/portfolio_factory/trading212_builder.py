@@ -1,5 +1,5 @@
-from backend.src.models import portfolio
-from backend.src.api.Trading212 import Trading212
+from models import portfolio
+from api.Trading212 import Trading212
 
 class Trading212PortfolioFactory:
 
