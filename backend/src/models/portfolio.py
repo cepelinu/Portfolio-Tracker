@@ -28,6 +28,16 @@ class Cash:
 
 class Stocks:
   """Class representing all holdings in a portfolio"""
+  def __init__(self):
+    columns = [
+      "average_price",
+      "forex_ppl",
+      "initial_buy_date",
+      "ppl",
+      "quantity",
+      "ticker"
+    ]
+    self.holdings = pandas.DataFrame(columns=columns)
 
   def __init__(self):
     self.holdings = pandas.DataFrame()
