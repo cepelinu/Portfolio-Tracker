@@ -26,7 +26,9 @@ def mock_trading212_api():
 
 @patch.object(Trading212, "fetch_account_cash", return_value=mock_fetch_account_cash())
 def test_trading212_portfolio_factory(mock_get, mock_trading212_api):
-  trading212_portfolio_instance = PortfolioFactory.build(mock_trading212_api)
+  trading212_portfolio = PortfolioFactory.build(mock_trading212_api)
 
-  assert isinstance(trading212_portfolio_instance, portfolio.Portfolio)
+  assert isinstance(trading212_portfolio, portfolio.Portfolio)
 
+  for key, value in trading212_portfolio.Cash.to_json().items():
+    assert mock_fetch_account_cash()[key] == getattr(trading212_portfolio.Cash, key)
