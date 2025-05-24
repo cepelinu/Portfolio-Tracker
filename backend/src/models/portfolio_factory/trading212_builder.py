@@ -14,29 +14,46 @@ class Trading212PortfolioFactory:
         Returns:
           object: The Portfolio instance
         """
-
-    def build_cash():
-      cash_instance = portfolio.Cash()
-
-      account_cash = trading212_api.fetch_account_cash()
-      cash_instance.free = account_cash["free"]
-      cash_instance.invested = account_cash["invested"]
-      cash_instance.ppl = account_cash["ppl"]
-      cash_instance.result = account_cash["result"]
-      cash_instance.total = account_cash["total"]
-
-      return cash_instance
-
-    def build_stocks():
-      stocks_instance = portfolio.Stocks()
-
-      # TODO: Retrieve and generalise stock data
-
-      return stocks_instance
-
     trading212_portfolio = portfolio.Portfolio()
 
-    trading212_portfolio.Cash = build_cash()
-    trading212_portfolio.Stocks = build_stocks()
+    trading212_portfolio.Cash = Trading212PortfolioFactory.build_cash(trading212_api)
+    trading212_portfolio.Stocks = Trading212PortfolioFactory.build_stocks(trading212_api)
 
     return trading212_portfolio
+
+  @staticmethod
+  def build_cash(trading212_api):
+    cash_instance = portfolio.Cash()
+
+    account_cash = trading212_api.fetch_account_cash()
+    cash_instance.free = account_cash["free"]
+    cash_instance.invested = account_cash["invested"]
+    cash_instance.ppl = account_cash["ppl"]
+    cash_instance.result = account_cash["result"]
+    cash_instance.total = account_cash["total"]
+
+    return cash_instance
+
+  @staticmethod
+  def build_stocks(trading212_api):
+    stocks_instance = portfolio.Stocks()
+
+    total_holdings = trading212_api.fetch_all_open_positions()
+    for holding in total_holdings:
+      # [
+      #       "average_price",
+      #       "forex_ppl",
+      #       "initial_buy_date",
+      #       "ppl",
+      #       "quantity",
+      #       "ticker"
+      #     ]
+      timestamp = holding["initialFillDate"]
+
+      row = [
+        holding["averagePrice"],
+        holding["fxPpl"],
+        holding["initialFillDate"]
+      ]
+
+    return stocks_instance
