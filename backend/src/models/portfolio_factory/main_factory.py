@@ -19,7 +19,7 @@ class PortfolioFactory:
     Raises:
       ValueError: If the Broker API is not valid
     """
-    if isinstance(broker_api, Trading212.__class__):
+    if isinstance(broker_api, Trading212):
       return Trading212PortfolioFactory.build(broker_api)
     else:
       raise ValueError(f"Unknown broker api parameter: {broker_api}")
