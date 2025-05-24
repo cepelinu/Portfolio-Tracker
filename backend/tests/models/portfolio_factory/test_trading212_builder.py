@@ -2,7 +2,7 @@ import pytest
 from unittest.mock import patch
 from api import *
 from models import portfolio
-from models.portfolio_factory.base import PortfolioFactory
+from models.portfolio_factory.trading212_builder import Trading212PortfolioFactory
 
 
 # Mock responses
@@ -25,10 +25,12 @@ def mock_trading212_api():
   return trading212
 
 @patch.object(Trading212, "fetch_account_cash", return_value=mock_fetch_account_cash())
-def test_trading212_portfolio_factory(mock_get, mock_trading212_api):
-  trading212_portfolio = PortfolioFactory.build(mock_trading212_api)
+def test_trading212_cash_instance(mock_get, mock_trading212_api):
+  trading212_cash_portfolio = Trading212PortfolioFactory.build_cash(mock_trading212_api)
 
-  assert isinstance(trading212_portfolio, portfolio.Portfolio)
+  assert isinstance(trading212_cash_portfolio, portfolio.Cash)
 
-  for key, value in trading212_portfolio.Cash.to_json().items():
-    assert mock_fetch_account_cash()[key] == getattr(trading212_portfolio.Cash, key)
+  for key, value in trading212_cash_portfolio.to_json().items():
+    assert mock_fetch_account_cash()[key] == getattr(trading212_cash_portfolio, key)
+
+
