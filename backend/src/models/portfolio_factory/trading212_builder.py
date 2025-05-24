@@ -23,6 +23,7 @@ class Trading212PortfolioFactory(Base):
 
   @staticmethod
   def build_cash(trading212_api):
+    """Build and return a Cash instance."""
     cash_instance = portfolio.Cash()
 
     account_cash = trading212_api.fetch_account_cash()
@@ -36,18 +37,11 @@ class Trading212PortfolioFactory(Base):
 
   @staticmethod
   def build_stocks(trading212_api):
+    """Build and return a Stock instance."""
     stocks_instance = portfolio.Stocks()
     total_holdings = trading212_api.fetch_all_open_positions()
 
     for holding in total_holdings:
-      # [
-      #       "average_price",
-      #       "forex_ppl",
-      #       "initial_buy_date",
-      #       "ppl",
-      #       "quantity",
-      #       "ticker"
-      #     ]
       timestamp = holding["initialFillDate"]
       initial_fill_date = Base.format_timestamp_to_utc_iso(timestamp)
 
