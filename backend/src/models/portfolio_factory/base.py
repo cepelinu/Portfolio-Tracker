@@ -15,8 +15,10 @@ class PortfolioFactory:
 
     Returns:
       object: The Portfolio instance
-    """
 
+    Raises:
+      ValueError: If the Broker API is not valid
+    """
     if isinstance(broker_api, Trading212):
       return Trading212PortfolioFactory.build(broker_api)
     else:
