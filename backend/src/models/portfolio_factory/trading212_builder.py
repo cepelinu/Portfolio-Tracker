@@ -1,8 +1,7 @@
 from models import portfolio
-from models.portfolio_factory import base
-from api.Trading212 import Trading212
+from models.portfolio_factory.base import *
 
-class Trading212PortfolioFactory:
+class Trading212PortfolioFactory(Base):
 
   @staticmethod
   def build(trading212_api):
@@ -50,7 +49,7 @@ class Trading212PortfolioFactory:
       #       "ticker"
       #     ]
       timestamp = holding["initialFillDate"]
-      initial_fill_date = base.PortfolioFactory.format_timestamp_to_utc_iso(timestamp)
+      initial_fill_date = Base.format_timestamp_to_utc_iso(timestamp)
 
       row = [
         holding["averagePrice"],

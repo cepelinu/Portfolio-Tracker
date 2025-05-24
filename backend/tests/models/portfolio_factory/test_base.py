@@ -1,12 +1,12 @@
 import pytest
-from models.portfolio_factory import base
+from models.portfolio_factory import main_factory
 
 class DummyBroker:
   pass
 
 def test_invalid_broker_name():
   with pytest.raises(ValueError):
-    base.PortfolioFactory.build(DummyBroker())
+    main_factory.PortfolioFactory.build(DummyBroker())
 
 def test_format_timestamp_to_utc_iso():
   test_cases = {
