@@ -48,7 +48,6 @@ class Trading212PortfolioFactory(Base):
       row = [
         holding["averagePrice"],
         holding["fxPpl"],
-        holding["initialFillDate"],
         initial_fill_date,
         holding["ppl"],
         holding["quantity"],
