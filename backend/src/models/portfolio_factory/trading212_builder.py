@@ -1,4 +1,5 @@
 from models import portfolio
+from models.portfolio_factory import base
 from api.Trading212 import Trading212
 
 class Trading212PortfolioFactory:
@@ -37,8 +38,8 @@ class Trading212PortfolioFactory:
   @staticmethod
   def build_stocks(trading212_api):
     stocks_instance = portfolio.Stocks()
-
     total_holdings = trading212_api.fetch_all_open_positions()
+
     for holding in total_holdings:
       # [
       #       "average_price",
@@ -49,11 +50,18 @@ class Trading212PortfolioFactory:
       #       "ticker"
       #     ]
       timestamp = holding["initialFillDate"]
+      initial_fill_date = base.PortfolioFactory.format_timestamp_to_utc_iso(timestamp)
 
       row = [
         holding["averagePrice"],
         holding["fxPpl"],
-        holding["initialFillDate"]
+        holding["initialFillDate"],
+        initial_fill_date,
+        holding["ppl"],
+        holding["quantity"],
+        holding["ticker"]
       ]
+
+      stocks_instance.holdings.loc[len(stocks_instance.holdings)] = row
 
     return stocks_instance
